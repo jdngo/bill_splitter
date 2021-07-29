@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 
 st.set_page_config(
-    # layout = "wide",
+    layout = "wide",
     page_title = "Bill Splitter",
     page_icon = "💸"
 )
