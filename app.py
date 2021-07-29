@@ -93,10 +93,11 @@ def update_item_amount(i, j, key):
         try:
             amount = round(float(amount), 2)
         except:
-            st.session_state.data[i][j] = 0
-            st.session_state[key] = ""
-            if (i == 1) and (st.session_state[f"even_split_{j}"] == "Yes"):
-                st.session_state.original_amount[j] = {"current_split": "", "total": ""}
+            if st.session_state[f"even_split_{j}"] == "No":
+                st.session_state.data[i][j] = 0
+                st.session_state[key] = ""
+                if (i == 1) and (st.session_state[f"even_split_{j}"] == "Yes"):
+                    st.session_state.original_amount[j] = {"current_split": "", "total": ""}
             return None
 
     if st.session_state[f"even_split_{j}"] == "Yes":
