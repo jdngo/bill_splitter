@@ -96,8 +96,15 @@ def update_item_amount(i, j, key):
             if st.session_state[f"even_split_{j}"] == "No":
                 st.session_state.data[i][j] = 0
                 st.session_state[key] = ""
-            elif (i == 1) and (st.session_state[f"even_split_{j}"] == "Yes"):
-                st.session_state.original_amount[j] = {"current_split": "", "total": ""}
+            elif st.session_state[f"even_split_{j}"] == "Yes":
+                if i == 1:
+                    st.session_state.original_amount[j] = {"current_split": "", "total": ""}
+                    for i in range(1, st.session_state.n_splits + 1):
+                        st.session_state.data[i][j] = 0
+                        st.session_state[f"item_amount_{i}_{j}"] = ""
+                else:
+                    st.session_state.data[i][j] = st.session_state.data[1][j]
+                    st.session_state[f"item_amount_{i}_{j}"] = st.session_state[f"item_amount_{1}_{j}"]
             return None
 
     if st.session_state[f"even_split_{j}"] == "Yes":
